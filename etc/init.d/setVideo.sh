@@ -26,13 +26,13 @@ if [ $(echo "$TVN" | egrep -c "device_name") -gt 0 ]
 then
     # we're plugged into HDMI
     OUTPUT="hdmi"
-    gpio -g mode  27 out; # Set GPIO pin 27 to output mode
-    gpio -g write 27 0;   # Set GPIO pin 27 to 0 to turn backlight off
+    /usr/bin/gpio -g mode  27 out; # Set GPIO pin 27 to output mode
+    /usr/bin/gpio -g write 27 0;   # Set GPIO pin 27 to 0 to turn backlight off
 else
     # we're plugged into something else
     OUTPUT="other"
-    gpio -g mode  27 out; # Set GPIO pin 27 to output mode
-    gpio -g write 27 1;   # Set GPIO pin 27 to 1 to turn backlight on
+    /usr/bin/gpio -g mode  27 out; # Set GPIO pin 27 to output mode
+    /usr/bin/gpio -g write 27 1;   # Set GPIO pin 27 to 1 to turn backlight on
 fi
 
 # when plugged into HDMI, run this
@@ -45,7 +45,7 @@ then
         echo "Rebooting into HDMI mode"
         /bin/cp /boot/config-hdmi.txt /boot/config.txt
         /bin/rm /etc/asound.conf
-        sync
+        /bin/sync
         videoChanged="true"
     fi
 fi
@@ -60,7 +60,7 @@ then
         echo "Rebooting into LCD screen mode"
         /bin/cp /boot/config-kippah.txt /boot/config.txt
         /bin/cp /etc/asound-usb.conf /etc/asound.conf
-        sync
+        /bin/sync
         videoChanged="true"
     fi
 fi
@@ -69,13 +69,13 @@ case $1 in
         start)
                if [ "$videoChanged" == "true" ]
                then
-                 reboot
+                 /sbin/reboot
                fi
                ;;
         stop)
                 ;;
         *)
-                echo "Usage: /etc/init.d/setvideo {start|stop}"
+                echo "Usage: /etc/init.d/setVideo.sh {start|stop}"
                 exit 1
                 ;;
 esac
