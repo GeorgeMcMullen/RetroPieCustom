@@ -43,10 +43,10 @@ then
     then
         # Configure the Raspberry Pi for HDMI and Reboot
         echo "Rebooting into HDMI mode"
-        /usr/bin/sudo /bin/cp /boot/config-hdmi.txt /boot/config.txt
-        /usr/bin/sudo /bin/rm /etc/asound.conf
+        /bin/cp /boot/config-hdmi.txt /boot/config.txt
+        /bin/rm /etc/asound.conf
         sync
-        videoChanged=1
+        videoChanged="true"
     fi
 fi
 
@@ -58,10 +58,10 @@ then
     then
         # Configure the Raspberry Pi for the alternate video mode
         echo "Rebooting into LCD screen mode"
-        /usr/bin/sudo /bin/cp /boot/config-kippah.txt /boot/config.txt
-        /usr/bin/sudo /bin/cp /etc/asound-usb.conf /etc/asound.conf
+        /bin/cp /boot/config-kippah.txt /boot/config.txt
+        /bin/cp /etc/asound-usb.conf /etc/asound.conf
         sync
-        videoChanged=1
+        videoChanged="true"
     fi
 fi
 
