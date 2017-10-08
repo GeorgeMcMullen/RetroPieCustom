@@ -4,6 +4,7 @@
 # Some settings may impact device functionality. See link above for details
 
 # Adafruit Kippah Settings
+# https://learn.adafruit.com/adafruit-dpi-display-kippah-ttl-tft/installation
 
 # Disable spi and i2c, we need these pins.
 dtparam=spi=off
