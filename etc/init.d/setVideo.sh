@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Configure video mode on start and before reboot
 
@@ -22,7 +22,7 @@ videoChanged="false"
 TVN=$(/opt/vc/bin/tvservice -n)
 
 # if the above command matches the HDMI display detected pattern
-if [ $(echo "$TVN" | egrep -c "device_name") -gt 0 ]
+if [ $(/bin/echo "$TVN" | /bin/egrep -c "device_name") -gt 0 ]
 then
     # we're plugged into HDMI
     OUTPUT="hdmi"
@@ -36,10 +36,10 @@ else
 fi
 
 # when plugged into HDMI, run this
-if [ "$OUTPUT" == "hdmi" ]
+if [ "$OUTPUT" = "hdmi" ]
 then
     # if a line starts "my_parameter" without a comment
-    if [ $(egrep -c "^# Video Mode: LCD" /boot/config.txt) -gt 0 ]
+    if [ $(/bin/egrep -c "^# Video Mode: LCD" /boot/config.txt) -gt 0 ]
     then
         # Configure the Raspberry Pi for HDMI and Reboot
         echo "Rebooting into HDMI mode"
@@ -51,10 +51,10 @@ then
 fi
 
 # when plugged into Composite, run this
-if [ "$OUTPUT" == "other" ]
+if [ "$OUTPUT" = "other" ]
 then
     # if a line starts "#my_parameter" commented out
-    if [ $(egrep -c "^# Video Mode: HDMI" /boot/config.txt) -gt 0 ]
+    if [ $(/bin/egrep -c "^# Video Mode: HDMI" /boot/config.txt) -gt 0 ]
     then
         # Configure the Raspberry Pi for the alternate video mode
         echo "Rebooting into LCD screen mode"
@@ -67,12 +67,15 @@ fi
 
 case $1 in
         start)
-               if [ "$videoChanged" == "true" ]
+               if [ "$videoChanged" = "true" ]
                then
                  /sbin/reboot
                fi
                ;;
         stop)
+                # We are stopping, and possibly shutting down, turn the backlight off
+                /usr/bin/gpio -g mode  27 out; # Set GPIO pin 27 to output mode
+                /usr/bin/gpio -g write 27 0;   # Set GPIO pin 27 to 0 to turn backlight off
                 ;;
         *)
                 echo "Usage: /etc/init.d/setVideo.sh {start|stop}"
