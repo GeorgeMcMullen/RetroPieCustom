@@ -6,6 +6,8 @@
 # This script will copy over the various customization files into the RetroPie installation.
 #
 
+# TODO: Check to make sure we are in the directory that the script is in
+
 #
 # Get the current date and time to timestamp any backups we make
 #
@@ -31,4 +33,5 @@ cp etc/asound-usb.conf /etc/
 # and set up the operating system (with config.txt, sound, and GPIO backlight)
 #
 cp etc/init.d/setVideo.sh /etc/init.d
+chmod a+rx /etc/init.d/setVideo.sh
 update-rc.d setVideo.sh defaults
