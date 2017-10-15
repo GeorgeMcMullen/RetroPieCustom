@@ -1,17 +1,23 @@
 #!/bin/sh
+# /etc/init.d/setVideo.sh
 #
 # Configure video mode on start and before reboot
 
 ### BEGIN INIT INFO
-# Provides:          setVideo
+# Provides:          setVideo.sh
 # Required-Start:    
 # Required-Stop:     
-# Default-Start:     S
+# Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Short-Description: Configure video mode on start and before reboot
 # Description:       This script will check to see if TVService detects
 #                    something plugged into the HDMI port and then change
 #                    the config.txt accordingly.
+#
+#                    To install, run:
+#                      sudo update-rc.d setVideo.sh defaults
+#                    To remove, run:
+#                      update-rc.d -f setVideo.sh remove
 ### END INIT INFO
 
 #. /lib/lsb/init-functions
