@@ -25,7 +25,7 @@
 videoChanged="false"
 
 # store the output of the tvservice commands
-TVN=$(/opt/vc/bin/tvservice -n)
+TVN=$(/opt/vc/bin/tvservice -n) 2> /dev/null
 
 # if the above command matches the HDMI display detected pattern
 if [ $(/bin/echo "$TVN" | /bin/egrep -c "device_name") -gt 0 ]
