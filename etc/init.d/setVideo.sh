@@ -23,6 +23,7 @@
 #. /lib/lsb/init-functions
 
 videoChanged="false"
+configFile="/boot/config.txt"
 
 # store the output of the tvservice commands
 TVN=$(/opt/vc/bin/tvservice -n) 2> /dev/null
@@ -44,12 +45,19 @@ fi
 # when plugged into HDMI, run this
 if [ "$OUTPUT" = "hdmi" ]
 then
-    # if a line starts "my_parameter" without a comment
-    if [ $(/bin/egrep -c "^# Video Mode: LCD" /boot/config.txt) -gt 0 ]
+    # Test if the config file exists and there is a comment for LCD video mode
+    if [ -e "$configFile" ]
+    then
+      configGrep=$(/bin/egrep -c "^# Video Mode: LCD" $configFile 2>/dev/null)
+    else
+      configGrep=1
+    fi
+    
+    if [ "$configGrep" -gt 0 ]
     then
         # Configure the Raspberry Pi for HDMI and Reboot
         echo "Rebooting into HDMI mode"
-        /bin/cp /boot/config-hdmi.txt /boot/config.txt
+        /bin/cp /boot/config-hdmi.txt $configFile
         /bin/rm /etc/asound.conf
         /bin/sync
         videoChanged="true"
@@ -59,12 +67,19 @@ fi
 # when plugged into Composite, run this
 if [ "$OUTPUT" = "other" ]
 then
-    # if a line starts "#my_parameter" commented out
-    if [ $(/bin/egrep -c "^# Video Mode: HDMI" /boot/config.txt) -gt 0 ]
+    # Test if the config file exists and there is a comment for HDMI video mode
+    if [ -e "$configFile" ]
+    then
+      configGrep=$(/bin/egrep -c "^# Video Mode: HDMI" $configFile 2>/dev/null)
+    else
+      configGrep=1
+    fi
+    
+    if [ "$configGrep" -gt 0 ]
     then
         # Configure the Raspberry Pi for the alternate video mode
         echo "Rebooting into LCD screen mode"
-        /bin/cp /boot/config-kippah.txt /boot/config.txt
+        /bin/cp /boot/config-kippah.txt $configFile
         /bin/cp /etc/asound-usb.conf /etc/asound.conf
         /bin/sync
         videoChanged="true"
