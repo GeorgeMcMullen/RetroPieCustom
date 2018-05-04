@@ -9,4 +9,4 @@ do
 done
 
 sleep 5
-ps -ef | grep omxplayer | grep -v grep | awk '{print $2}' | xargs kill -9
+ps -ef | grep omxplayer | grep -v grep | awk '{print $2}' | sudo xargs kill -9
