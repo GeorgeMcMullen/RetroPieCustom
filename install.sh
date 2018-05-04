@@ -37,6 +37,15 @@ chmod a+rx /etc/init.d/setVideo.sh
 update-rc.d setVideo.sh defaults
 
 #
+# Copy new splashscreen file and killer to appropriate directories and change permission
+#
+cp opt/retropie/supplementary/splashscreen/killSplash.sh /opt/retropie/supplementary/splashscreen/killSplash.sh
+cp opt/retropie/supplementary/splashscreen/asplashscreen.sh /opt/retropie/supplementary/splashscreen/asplashscreen.sh
+chmod a+rx /opt/retropie/supplementary/splashscreen/killSplash.sh
+chmod a+rx /opt/retropie/supplementary/splashscreen/asplashscreen.sh
+
+
+#
 # apcalc is needed to perform mathematical operations on the screen resolution
 #
 apt-get install apcalc
