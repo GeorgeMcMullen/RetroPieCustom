@@ -35,3 +35,8 @@ cp etc/asound-usb.conf /etc/
 cp etc/init.d/setVideo.sh /etc/init.d
 chmod a+rx /etc/init.d/setVideo.sh
 update-rc.d setVideo.sh defaults
+
+#
+# bc is needed to perform mathematical operations on the screen resolution
+#
+apt-get install bc
