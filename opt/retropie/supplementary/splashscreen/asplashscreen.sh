@@ -42,6 +42,8 @@ do_start () {
         then
           omxplayer -o both -b --layer 10000 --aspect-mode letterbox "$line"
         else
+          # TODO: Get video height and width from the video itself, determine if it's a vertical based video, or if it needs to be aspect-fit
+          # TODO: Have this be an option
           videoHeight=838
           videoWidth=620
           screenY1=`calc "ceil(($screenHeight-ceil((($screenWidth/$videoWidth)*$videoHeight)))/2)"`
