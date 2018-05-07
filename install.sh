@@ -47,5 +47,6 @@ chmod a+rx /opt/retropie/supplementary/splashscreen/asplashscreen.sh
 
 #
 # apcalc is needed to perform mathematical operations on the screen resolution
+# mediainfo is needed to get a video's height and weight in order to calculate the proper aspect fit
 #
-apt-get install apcalc
+apt-get install apcalc mediainfo
