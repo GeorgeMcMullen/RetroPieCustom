@@ -34,18 +34,18 @@ do_start () {
         done
 
         # These additions help fake aspect fit on vertical screens, which OMX Player can't do yet.
-        screenResolution="$(tvservice -s | sed 's/ \@.*//' | sed 's/^.*\, //')"
+        screenResolution="$(tvservice -s | sed 's/ \@.*// ; s/^.*\, //')"
         screenWidth="$(echo $screenResolution | sed 's/x.*//')"
         screenHeight="$(echo $screenResolution | sed 's/.*x//')"
 
         if [ "$screenWidth" -gt "$screenHeight" ]
         then
+          # When the screen is a standard landscape layout, letterbox seems to work fine
           omxplayer -o both -b --layer 10000 --aspect-mode letterbox "$line"
         else
-          # TODO: Get video height and width from the video itself, determine if it's a vertical based video, or if it needs to be aspect-fit
-          # TODO: Have this be an option
-          videoHeight=838
-          videoWidth=620
+          # When the screen is in portrait mode, we need to calculate the correct aspect ratio manually
+          videoHeight="$(mediainfo "$line" | grep Height | sed 's/ //g ; s/^.*\:// ; s/pixel.*//')"
+          videoWidth="$(mediainfo "$line" | grep Width | sed 's/ //g ; s/^.*\:// ; s/pixel.*//')"
           screenY1=`calc "ceil(($screenHeight-ceil((($screenWidth/$videoWidth)*$videoHeight)))/2)"`
           screenY2=`calc "$screenHeight-$screenY1"`
           omxplayer -o both -b --layer 10000 --aspect-mode stretch --win "0 $screenY1 $screenWidth $screenY2" "$line"
