@@ -9,6 +9,14 @@
 # TODO: Check to make sure we are in the directory that the script is in
 
 #
+# apcalc is needed to perform mathematical operations on the screen resolution
+# mediainfo is needed to get a video's height and weight in order to calculate the proper aspect fit
+# wiringpi is used by the setVideo.sh to turn the backlight on and off
+# raspi-gpio is required for the installation of the Adafruit Kippah as per https://learn.adafruit.com/adafruit-dpi-display-kippah-ttl-tft/installation
+#
+apt-get install apcalc mediainfo wiringpi raspi-gpio
+
+#
 # Get the current date and time to timestamp any backups we make
 #
 BACKUPDATE=$(date +'%Y%m%d%H%M')
@@ -44,10 +52,3 @@ cp opt/retropie/supplementary/splashscreen/asplashscreen.sh /opt/retropie/supple
 chmod a+rx /opt/retropie/supplementary/splashscreen/killSplash.sh
 chmod a+rx /opt/retropie/supplementary/splashscreen/asplashscreen.sh
 
-
-#
-# apcalc is needed to perform mathematical operations on the screen resolution
-# mediainfo is needed to get a video's height and weight in order to calculate the proper aspect fit
-# wiringpi is used by the setVideo.sh to turn the backlight on and off
-#
-apt-get install apcalc mediainfo wiringpi
