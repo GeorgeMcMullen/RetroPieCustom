@@ -16,6 +16,12 @@
 #
 apt-get install apcalc mediainfo wiringpi raspi-gpio
 
+# Install device tree blob for Adafruit Kippah
+pushd /home/pi/Downloads/
+wget https://raw.githubusercontent.com/adafruit/Adafruit-DPI-Kippah/master/dt-blob.bin
+cp dt-blob.bin /boot/
+popd
+
 #
 # Get the current date and time to timestamp any backups we make
 #
