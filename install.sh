@@ -32,9 +32,11 @@ mv /boot/config.txt /boot/config-${BACKUPDATE}.bak
 cp boot/config*.txt /boot/
 
 #
-# Copy a special asound file that will be used for USB sound cards.
+# Copy alsa config files that will be used for USB sound cards
 #
-cp etc/asound-usb.conf /etc/
+cp /usr/share/alsa/alsa.conf /usr/share/alsa/alsa-${BACKUPDATE}.bak
+cp usr/share/alsa/alsa*.conf /usr/share/alsa/
+cp /usr/share/alsa/alsa-usb.conf /usr/share/alsa/alsa.conf
 
 #
 # Install a new startup/shutdown script that will detect the video output
