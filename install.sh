@@ -39,6 +39,9 @@ cp boot/config*.txt /boot/
 
 #
 # Copy alsa config files that will be used for USB sound cards
+# For more information:
+#    https://learn.adafruit.com/usb-audio-cards-with-a-raspberry-pi/
+#    https://learn.adafruit.com/usb-audio-cards-with-a-raspberry-pi/updating-alsa-config
 #
 cp /usr/share/alsa/alsa.conf /usr/share/alsa/alsa-${BACKUPDATE}.bak
 cp usr/share/alsa/alsa*.conf /usr/share/alsa/
