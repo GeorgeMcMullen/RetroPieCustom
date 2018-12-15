@@ -64,3 +64,7 @@ cp opt/retropie/supplementary/splashscreen/asplashscreen.sh /opt/retropie/supple
 chmod a+rx /opt/retropie/supplementary/splashscreen/killSplash.sh
 chmod a+rx /opt/retropie/supplementary/splashscreen/asplashscreen.sh
 
+#
+# Required libraries for reading the Picade
+#
+pip install evdev
