@@ -13,8 +13,9 @@
 # mediainfo is needed to get a video's height and weight in order to calculate the proper aspect fit
 # wiringpi is used by the setVideo.sh to turn the backlight on and off
 # raspi-gpio is required for the installation of the Adafruit Kippah as per https://learn.adafruit.com/adafruit-dpi-display-kippah-ttl-tft/installation
+# python-pip is required to test the Picade keyboard mappings
 #
-apt-get install apcalc mediainfo wiringpi raspi-gpio
+apt-get install apcalc mediainfo wiringpi raspi-gpio python-pip
 
 # Install device tree blob for Adafruit Kippah
 pushd /home/pi/Downloads/
