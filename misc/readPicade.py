@@ -12,12 +12,18 @@ import string
 from evdev import InputDevice
 from select import select
 
+# This looks like it is configured for a QWERTZ keyboard
 keys = "X^1234567890XXXXqwertzuiopXXXXasdfghjklXXXXXyxcvbnmXXXXXXXXXXXXXXXXXXXXXXX"
 dev = InputDevice('/dev/input/by-id/usb-Arduino_LLC_Arduino_Leonardo_HIDFG-if02-event-joystick')
+
+print "Press a button:"
 
 while True:
    r,w,x = select([dev], [], [])
    for event in dev.read():
         if event.type==1 and event.value==1:
-                print( event.code )
-                print( keys[ event.code ] )
+                if event.code < len(keys):
+                     print( event.code )
+                     print( keys[ event.code ] )
+                else:
+                     print( event.code )
