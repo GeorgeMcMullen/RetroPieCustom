@@ -33,8 +33,8 @@ dpi_mode=87
 # Set up the size to 480x272 for a 4.3 inch TFT screen
 #
 
-framebuffer_width=480
-framebuffer_height=272
+framebuffer_width=272
+framebuffer_height=480
 dpi_output_format=520197
 hdmi_timings=480 0 40 48 88 272 0 13 3 32 0 0 0 60 0 32000000 3
 
@@ -44,8 +44,8 @@ hdmi_timings=480 0 40 48 88 272 0 13 3 32 0 0 0 60 0 32000000 3
 # Set up the size to 800x480
 #
 
-#framebuffer_width=800
-#framebuffer_height=480
+#framebuffer_width=480
+#framebuffer_height=800
 #dpi_output_format=454661
 #hdmi_timings=800 0 40 48 88 480 0 13 3 32 0 0 0 60 0 32000000 6
 
