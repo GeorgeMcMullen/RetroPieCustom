@@ -67,4 +67,4 @@ chmod a+rx /opt/retropie/supplementary/splashscreen/asplashscreen.sh
 #
 # Required libraries for reading the Picade
 #
-pip install evdev
+pip install evdev serial
