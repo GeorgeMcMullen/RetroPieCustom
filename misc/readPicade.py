@@ -23,7 +23,7 @@ while True:
    for event in dev.read():
         if event.type==1 and event.value==1:
                 if event.code < len(keys):
-                     print( event.code )
+                     print "Event Key: ".keys[ event.code ]."Event Code: {0}".format(event.code)
                      print( keys[ event.code ] )
                 else:
-                     print( event.code )
+                     print "Event Code: {0}".format(event.code)
