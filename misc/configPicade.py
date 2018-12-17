@@ -3,13 +3,6 @@ import imp
 # import picade
 picade = imp.load_source('picade', '/home/pi/Downloads/Picade-Sketch/Config/picade.py')
 
-print "Current configuration: "
-picade.dump()
-print "Setting new bindings"
-picade.bind(buttonsGyruss())
-print "Saving"
-picade.save()
-
 def buttonsGalaga():
     # Galaga buttons
     #   Event Code: 103
@@ -194,3 +187,10 @@ def buttonsGyruss():
             111,                    # o - Event     - MISO
             112,                    # p - Event     - SCLK
             ])
+
+print "Current configuration: "
+picade.dump()
+print "Setting new bindings"
+picade.bind(buttonsGyruss())
+print "Saving"
+picade.save()
