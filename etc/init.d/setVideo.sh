@@ -25,6 +25,26 @@
 videoChanged="false"
 configFile="/boot/config.txt"
 
+# Inline Python Script to set volume of Picade
+read -r -d '' picadeVolumeScript << EOF
+import serial
+picade = serial.Serial('/dev/ttyACM0',9600,timeout=1.0)
+string='--------------------++++++++++++++++s'
+
+try:
+    picade.reset_input_buffer()
+except AttributeError:
+    picade.flushInput()
+
+picade.write(string)
+
+for i in range(len(string)):
+    print(picade.readline().strip())
+
+print(picade.readline().strip())
+
+EOF
+
 # store the output of the tvservice commands
 TVN=$(/opt/vc/bin/tvservice -n) 2> /dev/null
 
@@ -85,6 +105,7 @@ then
         /bin/cp /usr/share/alsa/alsa-usb.conf /usr/share/alsa/alsa.conf
         # We need to change Emulation Station's config file. It is not in proper XML format.
         /bin/sed -i -e 's/string name="AudioDevice" value="PCM"/string name="AudioDevice" value="Speaker"/g' /opt/retropie/configs/all/emulationstation/es_settings.cfg
+        /usr/bin/python -c "$picadeVolumeScript"
         /bin/sync
         videoChanged="true"
     fi
