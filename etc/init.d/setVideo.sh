@@ -20,13 +20,15 @@
 #                      update-rc.d -f setVideo.sh remove
 ### END INIT INFO
 
+echo "Checking video configuration..."
+
 #. /lib/lsb/init-functions
 
 videoChanged="false"
 configFile="/boot/config.txt"
 
 # Inline Python Script to set volume of Picade
-read -r -d '' picadeVolumeScript << EOF
+picadeVolumeScript="
 import serial
 picade = serial.Serial('/dev/ttyACM0',9600,timeout=1.0)
 string='--------------------++++++++++++++++s'
@@ -43,7 +45,7 @@ for i in range(len(string)):
 
 print(picade.readline().strip())
 
-EOF
+"
 
 # store the output of the tvservice commands
 TVN=$(/opt/vc/bin/tvservice -n) 2> /dev/null
@@ -109,6 +111,7 @@ then
         videoChanged="true"
     fi
     # Set the volume of the Picade
+    echo "Setting volume on Picade"
     /usr/bin/python -c "$picadeVolumeScript"
 fi
 
