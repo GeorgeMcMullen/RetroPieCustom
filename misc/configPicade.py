@@ -192,5 +192,7 @@ print "Current configuration: "
 picade.dump()
 print "Setting new bindings"
 picade.bind(buttonsGyruss())
+print "Setting default volume"
+picade.command('--------------------++++++++++++++++')
 print "Saving"
 picade.save()
