@@ -105,10 +105,11 @@ then
         /bin/cp /usr/share/alsa/alsa-usb.conf /usr/share/alsa/alsa.conf
         # We need to change Emulation Station's config file. It is not in proper XML format.
         /bin/sed -i -e 's/string name="AudioDevice" value="PCM"/string name="AudioDevice" value="Speaker"/g' /opt/retropie/configs/all/emulationstation/es_settings.cfg
-        /usr/bin/python -c "$picadeVolumeScript"
         /bin/sync
         videoChanged="true"
     fi
+    # Set the volume of the Picade
+    /usr/bin/python -c "$picadeVolumeScript"
 fi
 
 case $1 in
