@@ -59,6 +59,8 @@ then
         echo "Rebooting into HDMI mode"
         /bin/cp /boot/config-hdmi.txt $configFile
         /bin/cp /usr/share/alsa/alsa-hdmi.conf /usr/share/alsa/alsa.conf
+        # We need to change Emulation Station's config file. It is not in proper XML format.
+        /bin/sed -i -e 's/string name="AudioDevice" value="Speaker"/string name="AudioDevice" value="PCM"/g' /opt/retropie/configs/all/emulationstation/es_settings.cfg
         /bin/sync
         videoChanged="true"
     fi
@@ -81,6 +83,8 @@ then
         echo "Rebooting into LCD screen mode"
         /bin/cp /boot/config-kippah.txt $configFile
         /bin/cp /usr/share/alsa/alsa-usb.conf /usr/share/alsa/alsa.conf
+        # We need to change Emulation Station's config file. It is not in proper XML format.
+        /bin/sed -i -e 's/string name="AudioDevice" value="PCM"/string name="AudioDevice" value="Speaker"/g' /opt/retropie/configs/all/emulationstation/es_settings.cfg
         /bin/sync
         videoChanged="true"
     fi
