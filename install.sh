@@ -6,7 +6,10 @@
 # This script will copy over the various customization files into the RetroPie installation.
 #
 
-# TODO: Check to make sure we are in the directory that the script is in
+# Check to make sure we are in the directory that the script is in
+scriptDirectory=`dirname $0`
+test -z "$scriptDirectory" && scriptDirectory=.
+pushd $scriptDirectory
 
 #
 # apcalc is needed to perform mathematical operations on the screen resolution
@@ -16,6 +19,12 @@
 # python-pip is required to test the Picade keyboard mappings
 #
 apt-get install apcalc mediainfo wiringpi raspi-gpio python-pip
+
+# Make sure the Downloads directory exists
+if [ ! -d "/home/pi/Downloads/" ]
+then
+  mkdir -p /home/pi/Downloads
+fi
 
 # Install device tree blob for Adafruit Kippah
 pushd /home/pi/Downloads/
