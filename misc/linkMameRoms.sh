@@ -43,7 +43,7 @@ fi
 # This is where the symolic linking actually happens. Push into the target directory and link every zip file individually.
 #  Done as a loop instead of "*" because there may be too many files for a command line.
 pushd "$retroPieDirectory" > /dev/null
-ls -1 "$downloadDirectory"/*.zip |
+ls -1 "$downloadDirectory"/*.[Zz][Ii][Pp] |
 while read line
 do
   echo "Linking: $line"
