@@ -24,6 +24,7 @@ apt-get install apcalc mediainfo wiringpi raspi-gpio python-pip
 if [ ! -d "/home/pi/Downloads/" ]
 then
   mkdir -p /home/pi/Downloads
+  chown pi:pi /home/pi/Downloads
 fi
 
 # Install device tree blob for Adafruit Kippah
