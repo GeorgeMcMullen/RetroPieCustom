@@ -54,11 +54,13 @@ TVN=$(/opt/vc/bin/tvservice -v 2 -n) 2> /dev/null
 if [ $(/bin/echo "$TVN" | /bin/egrep -c "device_name") -gt 0 ]
 then
     # we're plugged into HDMI
+    echo "HDMI is plugged in"
     OUTPUT="hdmi"
     /usr/bin/gpio -g mode  27 out; # Set GPIO pin 27 to output mode
     /usr/bin/gpio -g write 27 0;   # Set GPIO pin 27 to 0 to turn backlight off
 else
     # we're plugged into something else
+    echo "HDMI is not plugged in"
     OUTPUT="other"
     /usr/bin/gpio -g mode  27 out; # Set GPIO pin 27 to output mode
     /usr/bin/gpio -g write 27 1;   # Set GPIO pin 27 to 1 to turn backlight on
@@ -119,6 +121,7 @@ case $1 in
         start)
                if [ "$videoChanged" = "true" ]
                then
+                 echo "Video mode changed, rebooting"
                  /sbin/reboot
                fi
                ;;
