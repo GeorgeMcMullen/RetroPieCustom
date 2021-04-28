@@ -48,7 +48,7 @@ print(picade.readline().strip())
 "
 
 # store the output of the tvservice commands
-TVN=$(/opt/vc/bin/tvservice -n) 2> /dev/null
+TVN=$(/opt/vc/bin/tvservice -v 2 -n) 2> /dev/null
 
 # if the above command matches the HDMI display detected pattern
 if [ $(/bin/echo "$TVN" | /bin/egrep -c "device_name") -gt 0 ]
