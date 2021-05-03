@@ -66,7 +66,7 @@ else
     /usr/bin/gpio -g write 27 1;   # Set GPIO pin 27 to 1 to turn backlight on
 fi
 
-# when plugged into HDMI, run this
+# When plugged into HDMI, run this
 if [ "$OUTPUT" = "hdmi" ]
 then
     # Test if the config file exists and there is a comment for LCD video mode
@@ -83,14 +83,14 @@ then
         echo "Rebooting into HDMI mode"
         /bin/cp /boot/config-hdmi.txt $configFile
         /bin/cp /usr/share/alsa/alsa-hdmi.conf /usr/share/alsa/alsa.conf
-        # We need to change Emulation Station's config file. It is not in proper XML format.
-        /bin/sed -i -e 's/string name="AudioDevice" value="Speaker"/string name="AudioDevice" value="PCM"/g' /opt/retropie/configs/all/emulationstation/es_settings.cfg
+        # We need to change Emulation Station's config file. It is not in proper XML format. Setting is based on the output of `amixer`.
+        /bin/sed -i -e 's/string name="AudioDevice" value="Speaker"/string name="AudioDevice" value="HDMI"/g' /opt/retropie/configs/all/emulationstation/es_settings.cfg
         /bin/sync
         videoChanged="true"
     fi
 fi
 
-# when plugged into Composite, run this
+# When not plugged into HDMI (i.e., using the Kippah), run this
 if [ "$OUTPUT" = "other" ]
 then
     # Test if the config file exists and there is a comment for HDMI video mode
@@ -107,8 +107,8 @@ then
         echo "Rebooting into LCD screen mode"
         /bin/cp /boot/config-kippah.txt $configFile
         /bin/cp /usr/share/alsa/alsa-usb.conf /usr/share/alsa/alsa.conf
-        # We need to change Emulation Station's config file. It is not in proper XML format.
-        /bin/sed -i -e 's/string name="AudioDevice" value="PCM"/string name="AudioDevice" value="Speaker"/g' /opt/retropie/configs/all/emulationstation/es_settings.cfg
+        # We need to change Emulation Station's config file. It is not in proper XML format. Setting is based on the output of `amixer`.
+        /bin/sed -i -e 's/string name="AudioDevice" value="HDMI"/string name="AudioDevice" value="Speaker"/g' /opt/retropie/configs/all/emulationstation/es_settings.cfg
         /bin/sync
         videoChanged="true"
     fi
