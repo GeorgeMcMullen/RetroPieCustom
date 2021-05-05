@@ -56,11 +56,13 @@ do_start () {
           omxplayer --no-osd -o both -b --layer 10000 "$line"
         else
           # When the screen is in portrait mode, we need to calculate the correct aspect ratio manually
+          # omxiv is used to add a black background to the screen and cover everything else up
           videoHeight="$(mediainfo "$line" | grep Height | sed 's/ //g ; s/^.*\:// ; s/pixel.*//')"
           videoWidth="$(mediainfo "$line" | grep Width | sed 's/ //g ; s/^.*\:// ; s/pixel.*//')"
           screenY1=`calc "ceil(($screenHeight-ceil((($screenWidth/$videoWidth)*$videoHeight)))/2)"`
           screenY2=`calc "$screenHeight-$screenY1"`
-          omxplayer --no-osd -o both -b --layer 10000 --aspect-mode stretch --win "0 $screenY1 $screenWidth $screenY2" "$line"
+          "$omxiv" --once -b --aspect fill --layer 10000 /opt/retropie/supplementary/splashscreen/black-background.png >/dev/null 2>&1 &
+          omxplayer --no-osd -o both -b --layer 20000 --aspect-mode stretch --win "0 $screenY1 $screenWidth $screenY2" "$line"
         fi
         # End additions
     elif $(echo "$line" | grep -q "$REGEX_IMAGE"); then
