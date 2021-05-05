@@ -71,6 +71,7 @@ update-rc.d setVideo.sh defaults
 #
 cp opt/retropie/supplementary/splashscreen/killSplash.sh /opt/retropie/supplementary/splashscreen/killSplash.sh
 cp opt/retropie/supplementary/splashscreen/asplashscreen.sh /opt/retropie/supplementary/splashscreen/asplashscreen.sh
+cp opt/retropie/supplementary/splashscreen/black-background.png /opt/retropie/supplementary/splashscreen/black-background.png
 chmod a+rx /opt/retropie/supplementary/splashscreen/killSplash.sh
 chmod a+rx /opt/retropie/supplementary/splashscreen/asplashscreen.sh
 
