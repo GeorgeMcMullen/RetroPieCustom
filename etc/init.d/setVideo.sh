@@ -47,6 +47,25 @@ print(picade.readline().strip())
 
 "
 
+picadeVolumeScriptMute="
+import serial
+picade = serial.Serial('/dev/ttyACM0',9600,timeout=1.0)
+string='--------------------s'
+
+try:
+    picade.reset_input_buffer()
+except AttributeError:
+    picade.flushInput()
+
+picade.write(string)
+
+for i in range(len(string)):
+    print(picade.readline().strip())
+
+print(picade.readline().strip())
+
+"
+
 # store the output of the tvservice commands
 TVN=$(/opt/vc/bin/tvservice -v 2 -n) 2> /dev/null
 
@@ -56,19 +75,18 @@ then
     # we're plugged into HDMI
     echo "HDMI is plugged in"
     OUTPUT="hdmi"
-    /usr/bin/gpio -g mode  27 out; # Set GPIO pin 27 to output mode
-    /usr/bin/gpio -g write 27 0;   # Set GPIO pin 27 to 0 to turn backlight off
 else
     # we're plugged into something else
     echo "HDMI is not plugged in"
     OUTPUT="other"
-    /usr/bin/gpio -g mode  27 out; # Set GPIO pin 27 to output mode
-    /usr/bin/gpio -g write 27 1;   # Set GPIO pin 27 to 1 to turn backlight on
 fi
 
 # When plugged into HDMI, run this
 if [ "$OUTPUT" = "hdmi" ]
 then
+    /usr/bin/gpio -g mode  27 out; # Set GPIO pin 27 to output mode
+    /usr/bin/gpio -g write 27 0;   # Set GPIO pin 27 to 0 to turn backlight off
+
     # Test if the config file exists and there is a comment for LCD video mode
     if [ -e "$configFile" ]
     then
@@ -88,11 +106,17 @@ then
         /bin/sync
         videoChanged="true"
     fi
+    # Set the volume of the Picade
+    echo "Setting volume on Picade to zero"
+    /usr/bin/python -c "$picadeVolumeScriptMute"
 fi
 
 # When not plugged into HDMI (i.e., using the Kippah), run this
 if [ "$OUTPUT" = "other" ]
 then
+    /usr/bin/gpio -g mode  27 out; # Set GPIO pin 27 to output mode
+    /usr/bin/gpio -g write 27 1;   # Set GPIO pin 27 to 1 to turn backlight on
+
     # Test if the config file exists and there is a comment for HDMI video mode
     if [ -e "$configFile" ]
     then
