@@ -8,6 +8,6 @@ do
   sleep 1
 done
 
-sleep 5
+sleep 10
 ps -ef | grep omxplayer | grep -v grep | awk '{print $2}' | sudo xargs kill -9 > /dev/null 2>&1
 ps -ef | grep omxiv | grep -v grep | awk '{print $2}' | sudo xargs kill -9 > /dev/null 2>&1
