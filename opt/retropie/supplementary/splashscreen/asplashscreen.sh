@@ -1,10 +1,9 @@
 #!/bin/sh
 
-ROOTDIR=""
-DATADIR=""
-
-REGEX_VIDEO=""
-REGEX_IMAGE=""
+ROOTDIR="/opt/retropie"
+DATADIR="/home/pi/RetroPie"
+REGEX_VIDEO="\.avi\|\.mov\|\.mp4\|\.mkv\|\.3gp\|\.mpg\|\.mp3\|\.wav\|\.m4a\|\.aac\|\.ogg\|\.flac"
+REGEX_IMAGE="\.bmp\|\.jpg\|\.jpeg\|\.gif\|\.png\|\.ppm\|\.tiff\|\.webp"
 
 # Load user settings
 . /opt/retropie/configs/all/splashscreen.cfg
