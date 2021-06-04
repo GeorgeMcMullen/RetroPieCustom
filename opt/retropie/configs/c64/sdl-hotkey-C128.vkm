@@ -13,9 +13,9 @@
 
 !CLEAR
 
-98 Machine settings&Joystick settings&Allow keyset joystick
+98 Machine settings&Joystick settings&Swap joystick ports
 115 Quit emulator
-118 Machine settings&Joystick settings&Swap joystick ports
+118 Virtual keyboard
 300 Machine settings&Joystick settings&Swap joystick ports
 1072 Drive&Attach disk image to drive 10
 1073 Drive&Attach disk image to drive 11
