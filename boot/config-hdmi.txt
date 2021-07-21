@@ -3,6 +3,9 @@
 # http://rpf.io/configtxt
 # Some settings may impact device functionality. See link above for details
 
+# Disable DSI LCD screen
+ignore_lcd=1
+
 # uncomment if you get no picture on HDMI for a default "safe" mode
 #hdmi_safe=1
 
