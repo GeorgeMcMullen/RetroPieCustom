@@ -45,6 +45,7 @@ mv /boot/config.txt /boot/config-${BACKUPDATE}.bak
 
 #
 # Copy all the new config files to /boot/ (for things like LCD vs. HDMI output)
+# Remove the config files you do not need (for DPI or DSI screens)
 #
 cp boot/config*.txt /boot/
 
@@ -74,6 +75,19 @@ cp opt/retropie/supplementary/splashscreen/asplashscreen.sh /opt/retropie/supple
 cp opt/retropie/supplementary/splashscreen/black-background.png /opt/retropie/supplementary/splashscreen/black-background.png
 chmod a+rx /opt/retropie/supplementary/splashscreen/killSplash.sh
 chmod a+rx /opt/retropie/supplementary/splashscreen/asplashscreen.sh
+
+#
+# Configuration files for C64 Emulator
+#
+sudo pi cp opt/retropie/configs/c64/* /opt/retropie/configs/c64/
+
+#
+# Install Custom RetroPie Scripts
+#
+sudo pi ln -s /home/pi/Downloads/RetroPieCustom/ /home/pi/RetroPie-Setup/ext/RetroPieCustom
+pushd /home/pi/RetroPie-Setup/
+./retropie_packages.sh viceextra configure
+popd
 
 #
 # Required libraries for reading the Picade
