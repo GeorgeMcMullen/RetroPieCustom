@@ -39,9 +39,9 @@ popd
 BACKUPDATE=$(date +'%Y%m%d%H%M')
 
 #
-# Move the existing config.txt to a backup location
+# Backup the existing config.txt to a backup location
 #
-mv /boot/config.txt /boot/config-${BACKUPDATE}.bak
+cp /boot/config.txt /boot/config-${BACKUPDATE}.bak
 
 #
 # Copy all the new config files to /boot/ (for things like LCD vs. HDMI output)
