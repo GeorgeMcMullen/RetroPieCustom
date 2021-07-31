@@ -3,7 +3,7 @@
 # This script will kill the splash screen once a game has been autostarted
 #
 
-until runcommand=$(ps -ef | grep runcommand.sh | grep -v grep)
+until runcommand=$(ps -ef | egrep "emulationstation|runcommand.sh" | grep -v grep)
 do
   sleep 1
 done
