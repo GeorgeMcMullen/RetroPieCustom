@@ -82,9 +82,15 @@ chmod a+rx /opt/retropie/supplementary/splashscreen/asplashscreen.sh
 sudo pi cp opt/retropie/configs/c64/* /opt/retropie/configs/c64/
 
 #
+# We need a special Vice launch script because Vice currently doesn't like -config to not be the first argument
+#
+cp opt/retropie/emulators/vice/bin/vice.sh /opt/retropie/emulators/vice/bin/vice.sh 
+
+#
 # Install Custom RetroPie Scripts
 #
-sudo pi ln -s /home/pi/Downloads/RetroPieCustom/ /home/pi/RetroPie-Setup/ext/RetroPieCustom
+currentPath=`pwd`
+sudo pi ln -s $currentPath /home/pi/RetroPie-Setup/ext/RetroPieCustom
 pushd /home/pi/RetroPie-Setup/
 ./retropie_packages.sh viceextra configure
 popd
