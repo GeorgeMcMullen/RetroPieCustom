@@ -96,6 +96,11 @@ pushd /home/pi/RetroPie-Setup/
 popd
 
 #
+# Add games that require tap and no joysticks to C64
+#
+cat opt/retropie/configs/all/emulators.cfg >> /opt/retropie/configs/all/emulators.cfg
+
+#
 # Required libraries for reading the Picade
 #
 pip install evdev pyserial
