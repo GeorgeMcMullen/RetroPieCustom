@@ -19,7 +19,8 @@ rp_module_flags=""
 
 function configure_viceextra() {
     addEmulator 0 "vice-xscpu64" "c64" "/opt/retropie/emulators/vice/bin/vice.sh xscpu64 %ROM%"
-    addEmulator 0 "vice-x64-joy2" "c64" "/opt/retropie/emulators/vice/bin/vice.sh x64 %ROM% -joydev1 2 -joydev2 1"
-    addEmulator 0 "vice-x128-joy2" "c64" "/opt/retropie/emulators/vice/bin/vice.sh x128 %ROM% -joydev1 2 -joydev2 1"
+    addEmulator 0 "vice-x64-joyswap" "c64" "/opt/retropie/emulators/vice/bin/vice.sh x64 %ROM% -joydev1 2 -joydev2 1"
+    addEmulator 0 "vice-x128-joyswap" "c64" "/opt/retropie/emulators/vice/bin/vice.sh x128 %ROM% -joydev1 2 -joydev2 1"
     addEmulator 0 "vice-x64-nojiffy" "c64" "/opt/retropie/emulators/vice/bin/vice.sh x64 %ROM% -config /opt/retropie/configs/c64/sdl-vicerc-nojiffy"
+    addEmulator 0 "vice-x64-nojiffy-joyswap " "c64" "/opt/retropie/emulators/vice/bin/vice.sh x64 %ROM% -config /opt/retropie/configs/c64/sdl-vicerc-nojiffy -joydev1 2 -joydev2 1"
 }
