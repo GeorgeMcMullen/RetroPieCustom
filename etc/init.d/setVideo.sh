@@ -71,7 +71,7 @@ TVN=$(/opt/vc/bin/tvservice -v 2 -n) 2> /dev/null
 
 # Do we have multiple configurations for audio?
 hasMultipleAudioConfigs=0
-if [ -f "/usr/share/alsa/alsa-usb.conf" || -f "/usr/share/alsa/alsa-hdmi.conf" ]
+if [ -f "/usr/share/alsa/alsa-usb.conf" -o -f "/usr/share/alsa/alsa-hdmi.conf" ]
 then
   hasMultipleAudioConfigs=1
 fi
