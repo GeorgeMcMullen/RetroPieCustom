@@ -3,7 +3,7 @@
 # http://www.raspberrypi.org/documentation/configuration/config-txt.md
 # Some settings may impact device functionality. See link above for details
 
-display_lcd_rotate=1
+display_lcd_rotate=3
 dtoverlay=rpi-ft5406,touchscreen-swapped-x-y=1,touchscreen-inverted-x=1
 
 # uncomment if you get no picture on HDMI for a default "safe" mode
