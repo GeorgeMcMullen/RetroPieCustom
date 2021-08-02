@@ -164,7 +164,7 @@ then
           /bin/cp /usr/share/alsa/alsa-usb.conf /usr/share/alsa/alsa.conf
           # We need to change Emulation Station's config file. It is not in proper XML format. Setting is based on the output of `amixer`.
           newMixer=$(/usr/bin/amixer | /bin/grep "^Simple mixer control" | /bin/grep -v "Simple mixer control .Auto Gain Control" | /bin/grep -v "Simple mixer control .Mic" | /usr/bin/head -1 | /bin/sed 's/.*Simple mixer control .//i' | /bin/sed 's/.\,.*//')
-          /bin/sed -i -e sed 's/string name="AudioDevice" value=".*"/string name="AudioDevice" value="'$newMixer'"/g' /opt/retropie/configs/all/emulationstation/es_settings.cfg
+          /bin/sed -i -e 's/string name="AudioDevice" value=".*"/string name="AudioDevice" value="'$newMixer'"/g' /opt/retropie/configs/all/emulationstation/es_settings.cfg
         fi
         videoChanged="true"
     fi
@@ -194,7 +194,7 @@ then
           /bin/cp /usr/share/alsa/alsa-usb.conf /usr/share/alsa/alsa.conf
           # We need to change Emulation Station's config file. It is not in proper XML format. Setting is based on the output of `amixer`.
           newMixer=$(/usr/bin/amixer | /bin/grep "^Simple mixer control" | /bin/grep -v "Simple mixer control .Auto Gain Control" | /bin/grep -v "Simple mixer control .Mic" | /usr/bin/head -1 | /bin/sed 's/.*Simple mixer control .//i' | /bin/sed 's/.\,.*//')
-          /bin/sed -i -e sed 's/string name="AudioDevice" value=".*"/string name="AudioDevice" value="'$newMixer'"/g' /opt/retropie/configs/all/emulationstation/es_settings.cfg
+          /bin/sed -i -e 's/string name="AudioDevice" value=".*"/string name="AudioDevice" value="'$newMixer'"/g' /opt/retropie/configs/all/emulationstation/es_settings.cfg
         fi
         videoChanged="true"
     fi
