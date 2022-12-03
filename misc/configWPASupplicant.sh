@@ -76,5 +76,11 @@ systemctl restart dhcpcd
 ifconfig -a
 iwconfig
 
+# Ubuntu uses resolveconf via systemd to update the resolv.conf file, but it does so in the /run directory
+CURRENTDATETIME=$(date +"%Y%m%d%H%M")
+mv /etc/resolv.conf /etc/resolv.conf-$CURRENTDATETIME
+ln -s /run/resolvconf/resolv.conf /etc/resolv.conf
+systemctl restart resolvconf
+
 # Print a message to remind you to configure WiFi with retropie_setup.sh
 echo "Now you can run retropie_setup.sh to configure your WiFi!"
