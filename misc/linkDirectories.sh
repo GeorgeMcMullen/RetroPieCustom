@@ -7,6 +7,7 @@ rmdir atari5200
 rmdir atari7800
 rmdir atarilynx
 rmdir c64
+rmdir daphne
 rmdir gamegear
 rmdir gb
 rmdir gba
@@ -26,6 +27,7 @@ ln -s '/home/pi/Downloads/roms/Atari - 5200/' atari5200
 ln -s '/home/pi/Downloads/roms/Atari - 7800/' atari7800
 ln -s '/home/pi/Downloads/roms/Atari - Lynx/' atarilynx
 ln -s /home/pi/Downloads/roms/C64/Games/ c64
+ln -s /home/pi/Downloads/roms/Daphne/Archive.org/LASERDISC_GAMES/ daphne
 ln -s '/home/pi/Downloads/roms/Cylum'\''s Sega Master System and Game Gear ROM Sets (2014)/Sega Game Gear/[USA]/' gamegear
 ln -s '/home/pi/Downloads/roms/Cylum'\''s Game Boy (Color) ROM Set (2014)/Game Boy/Game Titles - #-Z/' gb
 ln -s '/home/pi/Downloads/roms/GBA ROMs/' gba
